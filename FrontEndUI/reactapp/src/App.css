@@ -1,5 +1,5 @@
 body {
-  background-color: #f8f9fa;
+  background-color: whitesmoke;
   font-family: Arial, sans-serif;
 }
 
@@ -10,4 +10,12 @@ body {
 
 button {
   border-radius: 5px;
+}
+
+.Navbar, .navbar-dark .navbar-nav .nav-link {
+  color: #e0e0e0;
+}
+
+.Navbar-brand, .nav-link, .navbar-toggler-icon {
+  color: #f8f9fa;
 }

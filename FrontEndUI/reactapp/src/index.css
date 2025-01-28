@@ -1,4 +1,5 @@
 body {
+  background-color: whitesmoke;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -10,4 +11,26 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.btn-primary {
+  background-color: #006400 !important; 
+  border-color: #006400 !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #004d00 !important; 
+  border-color: #004d00 !important;
+}
+
+.btn-secondary {
+  background-color: #008000 !important; 
+  border-color: #008000 !important;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background-color: #005f00 !important;
+  border-color: #005f00 !important;
 }

@@ -27,7 +27,7 @@ const ShopProducts = () => {
 
       // Step 2: Open Razorpay checkout
       const options = {
-        key: 'your_razorpay_key_id', // Replace with your Razorpay key ID
+        key: 'your_razorpay_key_id', 
         amount: amount * 100,
         currency: currency,
         name: 'My Shop',
@@ -71,7 +71,7 @@ const ShopProducts = () => {
   };
 
   return (
-    <Container>
+    <Container className="mt-5">
       <Row>
         {products.map((product) => (
           <Col key={product._id} md={4} className="mb-3">
