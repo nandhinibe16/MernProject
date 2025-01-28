@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Container, Card, Button, Row, Col } from 'react-bootstrap';
+import { Container, Card, Button, Row, Col, Pagination } from 'react-bootstrap';
 
 const ShopProducts = () => {
   const [products, setProducts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(6); 
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -70,10 +72,21 @@ const ShopProducts = () => {
     }
   };
 
+  const indexOfLastProduct = currentPage * itemsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
+  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+
+
+  const totalPages = Math.ceil(products.length / itemsPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <Container className="mt-5">
       <Row>
-        {products.map((product) => (
+        {currentProducts.map((product) => (
           <Col key={product._id} md={4} className="mb-3">
             <Card>
               <Card.Img variant="top" src={product.imageUrl} />
@@ -87,6 +100,34 @@ const ShopProducts = () => {
           </Col>
         ))}
       </Row>
+
+      <Pagination className="mt-4 justify-content-center custom-pagination">
+        <Pagination.First
+          onClick={() => handlePageChange(1)}
+          disabled={currentPage === 1}
+        />
+        <Pagination.Prev
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+        />
+        {[...Array(totalPages).keys()].map((page) => (
+          <Pagination.Item
+            key={page + 1}
+            active={page + 1 === currentPage}
+            onClick={() => handlePageChange(page + 1)}
+          >
+            {page + 1}
+          </Pagination.Item>
+        ))}
+        <Pagination.Next
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        />
+        <Pagination.Last
+          onClick={() => handlePageChange(totalPages)}
+          disabled={currentPage === totalPages}
+        />
+      </Pagination>
     </Container>
   );
 };

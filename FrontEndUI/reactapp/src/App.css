@@ -19,3 +19,17 @@ button {
 .Navbar-brand, .nav-link, .navbar-toggler-icon {
   color: #f8f9fa;
 }
+.custom-pagination .page-item .page-link {
+  color: #123524;
+  border: 1px solid #123524;
+}
+
+.custom-pagination .page-item.active .page-link {
+  background-color: #123524;
+  color: white;
+  border-color: #123524;
+}
+
+.custom-pagination .page-item.disabled .page-link {
+  color: gray;
+}
