@@ -5,6 +5,8 @@ import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import { Navigate } from 'react-router-dom';
+import UploadProduct from './pages/UploadProduct';
+import ShopProducts from './pages/ShopProducts';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
           </ProtectedRoute>
         }
       />
+       <Route path="/upload-product" element={<ProtectedRoute><UploadProduct /></ProtectedRoute>} />
+       <Route path="/shop-products" element={<ShopProducts />} />
        <Route path="/" element={<Navigate to="/login" />} />
     </Routes>
   );

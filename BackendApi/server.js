@@ -5,6 +5,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const authRoutes = require('./routes/authRoutes');
+const paymentRoutes = require('./routes/paymentRoutes');
+const productRoutes = require('./routes/productRoutes'); 
 
 dotenv.config();
 
@@ -13,6 +15,7 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.json());
 
 // MongoDB Connection
 mongoose
@@ -22,7 +25,8 @@ mongoose
 
 // Routes
 app.use('/api/auth', authRoutes);
-
+app.use('/api/payments', paymentRoutes);
+app.use('/api/products', productRoutes);
 // Test Route
 app.get('/', (req, res) => {
   res.send('API is running...');
