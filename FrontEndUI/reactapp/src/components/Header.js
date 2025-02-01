@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Nav, Container, Button } from 'react-bootstrap';
+import { Navbar, Nav, Container, Button, Badge } from 'react-bootstrap';
 import axios from 'axios';
-import './Header.css'; 
+import { useCart } from '../contexts/CartContext'; // Import useCart
+import './Header.css';
 
 const Header = () => {
   const [user, setUser] = useState(null);
+  const { cart } = useCart(); // Get cart data from context
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -37,6 +39,12 @@ const Header = () => {
         <Nav className="ms-auto">
           <Nav.Link as={Link} to="/shop-products">Shop Products</Nav.Link>
           <Nav.Link as={Link} to="/upload-product">Upload Product</Nav.Link>
+          
+          {/* Cart Link with Badge */}
+          <Nav.Link as={Link} to="/cart">
+            Cart {cart.length > 0 && <Badge bg="danger">{cart.length}</Badge>}
+          </Nav.Link>
+
           <Nav.Link>
             {user ? `Hello, ${user.name}` : 'Guest'}
           </Nav.Link>
