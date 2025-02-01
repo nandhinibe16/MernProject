@@ -1,11 +1,12 @@
 import React from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { useCart } from "../contexts/CartContext";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom"; 
+import CheckoutButton from "../components/CheckoutButton";
 
 const CartPage = () => {
   const { cart, removeFromCart } = useCart();
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate(); 
 
   const calculateTotal = () =>
     cart.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -41,9 +42,7 @@ const CartPage = () => {
           </Row>
           <div className="mt-4">
             <h4>Total: ₹{calculateTotal()}</h4>
-            <Button variant="success" disabled={cart.length === 0}>
-              Proceed to Checkout
-            </Button>
+            <CheckoutButton amount={calculateTotal()} />
             <Button variant="primary" className="ms-3" onClick={() => navigate("/shop-products")}>
               Go to Shop Products
             </Button>

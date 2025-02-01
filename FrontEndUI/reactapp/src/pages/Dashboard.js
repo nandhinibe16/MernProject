@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Container, Button } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
 const Dashboard = () => {
   const [user, setUser] = useState(null); 
@@ -20,16 +20,11 @@ const Dashboard = () => {
         localStorage.removeItem('token'); 
         window.location.href = '/login'; 
       } finally {
-        setLoading(false); // Stop loading
+        setLoading(false);
       }
     };
     fetchUser();
   }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem('token'); 
-    window.location.href = '/login'; 
-  };
 
   
   if (loading) {

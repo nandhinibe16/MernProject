@@ -18,6 +18,11 @@ const UploadProduct = () => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
       alert(response.data.message);
+
+      setName('');
+      setPrice('');
+      setDescription('');
+      setImageUrl('');
     } catch (error) {
       alert('Product upload failed');
       console.error(error);
