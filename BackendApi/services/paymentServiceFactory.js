@@ -29,6 +29,11 @@ class RazorpayPaymentService {
 
     return calculatedSignature === paymentDetails.razorpay_signature;
   }
+
+  async getPaymentDetails(payment_id) {
+    return await this.instance.payments.fetch(payment_id);
+  }
+  
 }
 
 class PaymentServiceFactory {

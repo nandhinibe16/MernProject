@@ -14,6 +14,7 @@ const Dashboard = () => {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUser(res.data); 
+        localStorage.setItem("userId", res.data._id); 
       } catch (err) {
         console.error('Failed to fetch user:', err);
         alert('Failed to fetch user. Redirecting to login.');
