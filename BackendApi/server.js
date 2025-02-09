@@ -6,7 +6,8 @@ const bodyParser = require('body-parser');
 
 const authRoutes = require('./routes/authRoutes');
 const paymentRoutes = require('./routes/paymentRoutes');
-const productRoutes = require('./routes/productRoutes'); 
+const productRoutes = require('./routes/productRoutes');
+const dashboardRoutes = require("./routes/dashboardRoutes");
 
 dotenv.config();
 
@@ -27,6 +28,8 @@ mongoose
 app.use('/api/auth', authRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/products', productRoutes);
+app.use("/api/dashboard", dashboardRoutes);
+
 // Test Route
 app.get('/', (req, res) => {
   res.send('API is running...');
