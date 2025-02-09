@@ -37,7 +37,13 @@ const ShopProducts = ({ onAddToCart }) => {
         {currentProducts.map((product) => (
           <Col key={product._id} md={4} className="mb-3">
             <Card>
-              <Card.Img variant="top" src={`http://localhost:5000${product.imageUrl}`} />
+            <div style={{ width: "100%", height: "200px", overflow: "hidden" }}>
+              <Card.Img
+                variant="top"
+                src={`http://localhost:5000${product.imageUrl}`}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            </div>
               <Card.Body>
                 <Card.Title>{product.name}</Card.Title>
                 <Card.Text>{product.description}</Card.Text>
