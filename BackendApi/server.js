@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const authRoutes = require('./routes/authRoutes');
 const paymentRoutes = require('./routes/paymentRoutes');
@@ -29,7 +30,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/products', productRoutes);
 app.use("/api/dashboard", dashboardRoutes);
-
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Test Route
 app.get('/', (req, res) => {
   res.send('API is running...');
