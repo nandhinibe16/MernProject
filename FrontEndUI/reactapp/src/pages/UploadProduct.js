@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Form, Button, Container, Table, Modal } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 const UploadProduct = () => {
   const [name, setName] = useState("");
@@ -34,14 +35,14 @@ const UploadProduct = () => {
         { name, price, description, imageUrl },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      alert(response.data.message);
+      toast.success(response.data.message);
       setName("");
       setPrice("");
       setDescription("");
       setImageUrl("");
       fetchProducts(); 
     } catch (error) {
-      alert("Product upload failed");
+      toast.error("Product upload failed");
       console.error(error);
     }
   };
@@ -75,7 +76,7 @@ const UploadProduct = () => {
         { name, price, description, imageUrl },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      alert("Product updated successfully");
+      toast.success("Product updated successfully");
       setShowModal(false);
       setName("");
       setPrice("");
@@ -83,7 +84,7 @@ const UploadProduct = () => {
       setImageUrl("");
       fetchProducts(); 
     } catch (error) {
-      alert("Failed to update product");
+      toast.error("Failed to update product");
       console.error(error);
     }
   };

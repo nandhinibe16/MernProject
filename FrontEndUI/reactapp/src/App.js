@@ -10,6 +10,8 @@ import ShopProducts from './pages/ShopProducts';
 import CartPage from './pages/CartPage';
 import Header from './components/Header';  
 import { useCart } from "./contexts/CartContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const location = useLocation();
@@ -17,6 +19,7 @@ function App() {
   return (
     <>
       {location.pathname !== '/login' && location.pathname !== '/signup' && <Header />}
+      <ToastContainer position="top-right" autoClose={3000} />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />

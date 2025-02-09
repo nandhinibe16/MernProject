@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { BarChart, Bar, LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import { toast } from "react-toastify";
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
@@ -18,7 +19,7 @@ const Dashboard = () => {
     const fetchUserAndData = async () => {
       const token = localStorage.getItem('token');
       if (!token) {
-        alert('No authentication token found. Redirecting to login.');
+        toast.error('No authentication token found. Redirecting to login.');
         window.location.href = '/login';
         return;
       }
@@ -53,7 +54,7 @@ const Dashboard = () => {
 
       } catch (err) {
         console.error('Failed to fetch data:', err);
-        alert('Failed to fetch data. Redirecting to login.');
+        toast.error('Failed to fetch data. Redirecting to login.');
         localStorage.removeItem('token');
         window.location.href = '/login';
       } finally {

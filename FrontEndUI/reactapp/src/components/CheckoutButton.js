@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import axios from "axios";
 import { useCart } from "../contexts/CartContext";
+import { toast } from "react-toastify";
 
 const CheckoutButton = ({ amount }) => {
   const { cart } = useCart(); 
@@ -12,7 +13,7 @@ const CheckoutButton = ({ amount }) => {
       const userId = localStorage.getItem("userId");     
       
       if (cart.length === 0) {
-        alert("Your cart is empty!");
+        toast.warning("Your cart is empty!");
         return;
       }
       const items = cart.map((item) => ({
@@ -28,12 +29,12 @@ const CheckoutButton = ({ amount }) => {
       });
       
       if (!orderResponse.data.success) {
-        alert("Failed to save order. Try again.");
+        toast.error("Failed to save order. Try again.");
         return;
       }
       else
       {
-        alert("Order saved successfully.");
+        toast.success("Order saved successfully.");
       }
 
       const { data } = await axios.post("http://localhost:5000/api/payments/create-order", {
@@ -61,9 +62,9 @@ const CheckoutButton = ({ amount }) => {
           const verifyRes = await axios.post("http://localhost:5000/api/payments/verify-payment", paymentDetails);
           
           if (verifyRes.data.success) {
-            alert("Payment Successful!");
+            toast.success("Payment Successful!");
           } else {
-            alert("Payment verification failed.");
+            toast.error("Payment verification failed.");
           }
         },
         prefill: {
