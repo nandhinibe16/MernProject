@@ -7,9 +7,6 @@ class DashboardService {
     try {
       const totalProducts = await Product.countDocuments();
       const products = await Product.find({}, "price"); 
-      console.log("products");
-      console.log(products);
-
       if (products.length === 0) {
         return { totalProducts, priceRange: { min: null, max: null } };
       }
@@ -18,8 +15,6 @@ class DashboardService {
         min: Math.min(...prices),
         max: Math.max(...prices),
       };
-      console.log("products priceRange");
-      console.log(priceRange);
       return { totalProducts, priceRange };
     } catch (error) {
       console.error("Error fetching product stats:", error);
@@ -36,7 +31,6 @@ class DashboardService {
         order.items.forEach(item => productIds.add(item.product.toString()));
       });
       const savedProducts = await Product.find({ _id: { $in: Array.from(productIds) } });
-      console.log("savedProducts Details:", savedProducts);
   
       return { savedProductsCount: savedProducts.length, savedProducts };
     } catch (error) {
@@ -44,16 +38,12 @@ class DashboardService {
       throw new Error("Failed to fetch saved products");
     }
   }
-  
-  
 
   async getOrderStats() {
     try {
       
       const totalOrders = await Order.countDocuments();
-      const orderDetails = await Order.find();      
-      console.log("totalorderDetails");
-      console.log(orderDetails);
+      const orderDetails = await Order.find();  
       return { totalOrders, orderDetails };
     } catch (error) {
       console.error("Error fetching order stats:", error);

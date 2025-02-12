@@ -2,18 +2,30 @@ const DashboardFactory = require("../services/dashboardFactory");
 
 const dashboardService = DashboardFactory.createService("dashboard");
 
-exports.getProductStats = (req, res) => {
-  const stats = dashboardService.getProductStats();
-  res.json(stats);
+exports.getProductStats = async (req, res) => {
+  try {
+    const stats = await dashboardService.getProductStats();
+    res.json(stats);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
 
-exports.getUserSavedProducts = (req, res) => {
-  const userId = req.params.userId;
-  const savedProducts = dashboardService.getUserSavedProducts(userId);
-  res.json(savedProducts);
+exports.getUserSavedProducts = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const savedProducts = await dashboardService.getUserSavedProducts(userId);
+    res.json(savedProducts);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
 
-exports.getOrderStats = (req, res) => {
-  const stats = dashboardService.getOrderStats();
-  res.json(stats);
+exports.getOrderStats = async (req, res) => {
+  try {
+    const stats = await dashboardService.getOrderStats();
+    res.json(stats);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
