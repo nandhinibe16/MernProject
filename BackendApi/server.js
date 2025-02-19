@@ -7,6 +7,7 @@ const path = require('path');
 
 const authRoutes = require('./routes/authRoutes');
 const paymentRoutes = require('./routes/paymentRoutes');
+const webhookRoutes = require('./routes/webhookRoutes');
 const productRoutes = require('./routes/productRoutes');
 const dashboardRoutes = require("./routes/dashboardRoutes");
 
@@ -28,6 +29,7 @@ mongoose
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/payments', paymentRoutes);
+app.use("/api/payments/webhook", webhookRoutes);
 app.use('/api/products', productRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));

@@ -58,14 +58,8 @@ const CheckoutButton = ({ amount }) => {
             items: items, 
             totalAmount: amount,
           };
-
-          const verifyRes = await axios.post("http://localhost:5000/api/payments/verify-payment", paymentDetails);
-          
-          if (verifyRes.data.success) {
-            toast.success("Payment Successful!");
-          } else {
-            toast.error("Payment verification failed.");
-          }
+          console.log('paymentDetails', paymentDetails);
+          toast.success("Payment Successful!");
         },
         prefill: {
           name: "John Doe",
